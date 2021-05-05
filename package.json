@@ -1,0 +1,29 @@
+{
+  "name": "ps-express-generator",
+  "version": "1.0.0",
+  "description": "Express Boilerplate Boilerplate based upto express-generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mustafa Shykh <mustafa.ahmed@phaedrasolutions.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "shelljs": "^0.8.4"
+  },
+  "bin": {
+    "ps-express-generator": "index.js"
+  },
+  "keywords": [
+    "express",
+    "framework",
+    "sinatra",
+    "web",
+    "rest",
+    "restful",
+    "router",
+    "app",
+    "api"
+  ]
+}
