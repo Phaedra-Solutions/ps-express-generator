@@ -6,13 +6,18 @@ process.argv = process.argv.slice(2, process.argv.length);
 
 if (process.argv.length === 0 ){
 	shell.echo('Name of the project is required "npx express-generator <name>"');
+	shell.exec(`npx express-generator -h`);
+	shell.exit(1);
+}
+
+if (process.argv[0] === '-h') {
+	shell.exec(`npx express-generator -h`);
 	shell.exit(1);
 }
 
 // Argument String
 let argsStr = '';
 for (let i = 0; i < process.argv.length; i++) {
-	console.log('[ARGUMENTS]', process.argv[i])
 	argsStr += ` ${process.argv[i]}`;
 }
 
