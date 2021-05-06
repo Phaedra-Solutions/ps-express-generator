@@ -79,6 +79,12 @@ shell.cd('..');
 // ENV
 shell.touch('.env');
 
+// .vsCode Initialization
+shell.mkdir('.vscode');
+shell.cd('cd .vscode');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/.vscode/settings.json --output settings.json')
+shell.cd('..');
+
 // Initializing git
 shell.exec('git init');
 
