@@ -23,7 +23,7 @@ for (let i = 0; i < process.argv.length; i++) {
 
 // Making Project
 if (shell.exec(`npx express-generator ${argsStr} --git`).code !== 0) {
-	shell.echo('Error: Git commit failed');
+	shell.echo('Error: Express generatoe failed');
 	shell.exit(1);
 }
 
@@ -82,8 +82,7 @@ shell.touch('.env');
 // .vsCode Initialization
 shell.mkdir('.vscode');
 shell.cd('cd .vscode');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/.vscode/settings.json --output settings.json')
-shell.cd('..');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
 
 // Initializing git
 shell.exec('git init');
