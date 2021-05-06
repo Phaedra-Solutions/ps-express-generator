@@ -15,6 +15,7 @@
   "bin": {
     "ps-express-generator": "index.js"
   },
+  "repository": "mustafasheikh1/ps-express-generator",
   "keywords": [
     "express",
     "framework",
