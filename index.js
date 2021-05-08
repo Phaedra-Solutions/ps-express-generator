@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
-var shell = require('shelljs');
+const shell = require('shelljs');
+const replace = require('replace-in-file');
+const changes = require('./changes.json');
 
 process.argv = process.argv.slice(2, process.argv.length);
 
@@ -84,8 +86,6 @@ shell.mkdir('.vscode');
 shell.cd('cd .vscode');
 shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
 
-// Initializing git
-shell.exec('git init');
 
 // Node Modules
 if(shell.exec('npm i').code !== 0) {
@@ -93,5 +93,16 @@ if(shell.exec('npm i').code !== 0) {
 	shell.exit(1);
 }
 
-shell.exit(0);
+// Makeing updates in files
+for (let i = 0; i < changes.length; i++) {
+	replace.sync(changes[i])
+}
 
+// Adding and deleteing files
+shell.cd('routes');
+shell.rm(['index.js', 'users']);
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
+
+
+
+shell.exit(0);
