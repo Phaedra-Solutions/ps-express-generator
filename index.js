@@ -83,7 +83,6 @@ shell.touch('.env');
 
 // .vsCode Initialization
 shell.mkdir('.vscode');
-shell.cd('cd .vscode');
 shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
 
 
@@ -99,10 +98,11 @@ for (let i = 0; i < changes.length; i++) {
 }
 
 // Adding and deleteing files
-shell.cd('routes');
-shell.rm(['index.js', 'users']);
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
-
+shell.rm(['routes/index.js', 'routes/users.js']);
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/index.js --output routes/index.js');
+shell.mkdir('routes/default');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output routes/default/controller.js');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output routes/default/routes-config.js');
 
 
 shell.exit(0);
