@@ -1,5 +1,10 @@
 const { handleError } = require('../shared/common/helper');
 
+/**
+ * @description For multi-role user management
+ * @param {*} opts 
+ * @returns 
+ */
 exports.isAuthorized = (opts = { hasRole: [], allowSameUser: false } ) => {
     return (req, res, next) => {
       try {

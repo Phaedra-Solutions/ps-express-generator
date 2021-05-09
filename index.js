@@ -4,6 +4,8 @@ const shell = require('shelljs');
 const replace = require('replace-in-file');
 const changes = require('./changes.json');
 
+const platingEngines = ['--ejs', '--view', '--pug', '--hbs', '--hogan', '--dust', '--hjs', '--jade', '--twig', '--vash'];
+
 process.argv = process.argv.slice(2, process.argv.length);
 
 if (process.argv.length === 0 ){
@@ -23,8 +25,16 @@ for (let i = 0; i < process.argv.length; i++) {
 	argsStr += ` ${process.argv[i]}`;
 }
 
+// Setting no-view as default if no view is set
+let hasView = false;
+for (let i = 0; i < platingEngines.length; i++) {
+	if (argsStr.includes(platingEngines[i])) {
+		hasView = true;
+	}
+}
+
 // Making Project
-if (shell.exec(`npx express-generator ${argsStr} --git`).code !== 0) {
+if (shell.exec(`npx express-generator ${argsStr} ${!hasView ? '--no-view': ''} --git`).code !== 0) {
 	shell.echo('Error: Express generatoe failed');
 	shell.exit(1);
 }
@@ -68,11 +78,6 @@ shell.cd('common');
 shell.touch('index.js');
 shell.cd('..');
 
-shell.mkdir('helper');
-shell.cd('helper');
-shell.touch('index.js');
-shell.cd('..');
-
 shell.cd('..');
 
 // ENV
@@ -88,6 +93,9 @@ if(shell.exec('npm i').code !== 0) {
 	shell.echo('Error: npm i failed');
 	shell.exit(1);
 }
+
+// Installing jsonwebtoken
+shell.exec('npm i jsonwebtoken');
 
 // Makeing updates in files
 for (let i = 0; i < changes.length; i++) {
