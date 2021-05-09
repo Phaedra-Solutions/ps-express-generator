@@ -36,9 +36,6 @@ if (process.argv[0]) {
 
 // middleware
 shell.mkdir('middleware');
-shell.cd('middleware');
-shell.touch('index.js');
-shell.cd('..');
 
 // models
 shell.mkdir('models');
@@ -103,6 +100,10 @@ shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-gen
 shell.mkdir('routes/default');
 shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output routes/default/controller.js');
 shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output routes/default/routes-config.js');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output shared/common/helper.js');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output middleware/authenticated.js');
+shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output middleware/authorized.js');
+
 
 
 shell.exit(0);
