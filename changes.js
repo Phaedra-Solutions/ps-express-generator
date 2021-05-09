@@ -1,8 +1,13 @@
-[
+module.exports = [
   { 
     "files": "app.js",
     "from": "var indexRouter = require('./routes/index');\nvar usersRouter = require('./routes/users');",
     "to": ""
+  },
+  { 
+    "files": ["*.js", "bin/www"],
+    "from": /var/g,
+    "to": "const"
   },
   {
     "files": "app.js",
@@ -17,6 +22,6 @@
   {
     "files": "bin/www",
     "from": "server.listen(port);",
-    "to": "server.listen(port, () => { console.log(`Express App is Running on port:${port}`) });"
+    "to": "server.listen(port, () => { console.log(`Express App is Running on http://localhost:${port}`) });"
   }
 ]

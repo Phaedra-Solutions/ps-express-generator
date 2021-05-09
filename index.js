@@ -2,7 +2,7 @@
 
 const shell = require('shelljs');
 const replace = require('replace-in-file');
-const changes = require('./changes.json');
+const changes = require('./changes');
 
 const platingEngines = ['--ejs', '--view', '--pug', '--hbs', '--hogan', '--dust', '--hjs', '--jade', '--twig', '--vash'];
 
@@ -85,7 +85,7 @@ shell.touch('.env');
 
 // .vsCode Initialization
 shell.mkdir('.vscode');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
 
 
 // Node Modules
@@ -97,6 +97,9 @@ if(shell.exec('npm i').code !== 0) {
 // Installing jsonwebtoken
 shell.exec('npm i jsonwebtoken');
 
+// Installig swagger
+shell.exec('npm install swagger-ui-express');
+
 // Makeing updates in files
 for (let i = 0; i < changes.length; i++) {
 	replace.sync(changes[i])
@@ -104,13 +107,13 @@ for (let i = 0; i < changes.length; i++) {
 
 // Adding and deleteing files
 shell.rm(['routes/index.js', 'routes/users.js']);
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/index.js --output routes/index.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/index.js --output routes/index.js');
 shell.mkdir('routes/default');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output routes/default/controller.js');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output routes/default/routes-config.js');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output shared/common/helper.js');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output middleware/authenticated.js');
-shell.exec('curl https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output middleware/authorized.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output routes/default/controller.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output routes/default/routes-config.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output shared/common/helper.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output middleware/authenticated.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output middleware/authorized.js');
 
 
 
