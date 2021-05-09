@@ -12,6 +12,11 @@
 ```sh
 $ npm install -g ps-express-generator
 ```
+or 
+
+```sh
+$ npx ps-express-generator <name>
+```
 
 ## Quick Start
 
@@ -20,7 +25,7 @@ The quickest way to get started with express is to utilize the executable `expre
 Create the app:
 
 ```bash
-$ ps-express-generator --view=hbs /tmp/foo && cd /tmp/foo
+$ ps-express-generator <name>
 ```
 
 Install dependencies:
