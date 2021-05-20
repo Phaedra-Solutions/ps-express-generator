@@ -1,6 +1,6 @@
 {
   "name": "ps-express-generator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "index.js",
   "scripts": {
