@@ -1,6 +1,6 @@
 module.exports = [
   { 
-    "files": "app.js",
+    "files": "src/app.js",
     "from": "var indexRouter = require('./routes/index');\nvar usersRouter = require('./routes/users');",
     "to": ""
   },
@@ -10,9 +10,9 @@ module.exports = [
     "to": "const"
   },
   {
-    "files": "app.js",
+    "files": "src/app.js",
     "from": "app.use('/', indexRouter);\napp.use('/users', usersRouter);",
-    "to": "// Routes\nrequire('./routes')(app);"
+    "to": "// Routes\nrequire('./@routes')(app);"
   },
   {
     "files": "package.json",

@@ -44,33 +44,45 @@ if (process.argv[0]) {
 	shell.cd(process.argv[0])
 }
 
+// Making src folder
+shell.mkdir('src');
+
+// Moving data to src
+shell.exec('mv routes src/@routes');
+shell.exec('mv app.js src/app.js');
+
+
+// Moving in src
+shell.cd('src');
+
+
 // middleware
-shell.mkdir('middleware');
+shell.mkdir('@middleware');
 
 // models
-shell.mkdir('models');
-shell.cd('models');
+shell.mkdir('@models');
+shell.cd('@models');
 shell.touch('index.js');
 shell.cd('..');
 
 
 // services
-shell.mkdir('services');
-shell.cd('services');
+shell.mkdir('@services');
+shell.cd('@services');
 shell.touch('index.js');
 shell.cd('..');
 
 
 // startup
-shell.mkdir('startup');
-shell.cd('startup');
+shell.mkdir('@startup');
+shell.cd('@startup');
 shell.touch('index.js');
 shell.cd('..');
 
 
 // Helper
-shell.mkdir('shared');
-shell.cd('shared');
+shell.mkdir('@shared');
+shell.cd('@shared');
 shell.touch('index.js');
 
 shell.mkdir('common');
@@ -79,6 +91,8 @@ shell.touch('index.js');
 shell.cd('..');
 
 shell.cd('..');
+shell.cd('..');
+
 
 // ENV
 shell.touch('.env');
@@ -106,14 +120,15 @@ for (let i = 0; i < changes.length; i++) {
 }
 
 // Adding and deleteing files
-shell.rm(['routes/index.js', 'routes/users.js']);
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/index.js --output routes/index.js');
-shell.mkdir('routes/default');
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output routes/default/controller.js');
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output routes/default/routes-config.js');
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output shared/common/helper.js');
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output middleware/authenticated.js');
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output middleware/authorized.js');
+shell.exec('pwd');
+shell.rm(['src/@routes/index.js', 'src/@routes/users.js']);
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/index.js --output src/@routes/index.js');
+shell.mkdir('src/@routes/default');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output src/@routes/default/controller.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output src/@routes/default/routes-config.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output src/@shared/common/helper.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output src/@middleware/authenticated.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output src/@middleware/authorized.js');
 
 
 

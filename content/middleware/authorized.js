@@ -1,4 +1,4 @@
-const { handleError } = require('../shared/common/helper');
+const { handleError } = require('../@shared/common/helper');
 
 /**
  * @description For multi-role user management

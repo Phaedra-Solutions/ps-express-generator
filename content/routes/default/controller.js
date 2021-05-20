@@ -1,4 +1,4 @@
-const { handleError } = require('../../shared/common/helper');
+const { handleError } = require('../../@shared/common/helper');
 
 /**
  * @description default route for the App
