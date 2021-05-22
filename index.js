@@ -4,7 +4,15 @@ const shell = require('shelljs');
 const replace = require('replace-in-file');
 const changes = require('./changes');
 
-const platingEngines = ['--ejs', '--view', '--pug', '--hbs', '--hogan', '--dust', '--hjs', '--jade', '--twig', '--vash'];
+// ##########################  ARGS PROCESSING ########################## //
+
+const templatingEngines = ['--ejs', '--view', '--pug', '--hbs', '--hogan', '--dust', '--hjs', '--jade', '--twig', '--vash'];
+const db_args = ['--mongo', '--mariadb', '--postgresql'];
+const db = {
+	'MONGO': '--mongo',
+	'MARIA': '--mariadb',
+	'POSTGRESQL': '--postgresql'
+}
 
 process.argv = process.argv.slice(2, process.argv.length);
 
@@ -27,11 +35,18 @@ for (let i = 0; i < process.argv.length; i++) {
 
 // Setting no-view as default if no view is set
 let hasView = false;
-for (let i = 0; i < platingEngines.length; i++) {
-	if (argsStr.includes(platingEngines[i])) {
+let selectedDb;
+for (let i = 0; i < process.argv.length; i++) {
+	if (templatingEngines.includes(argsStr[i])) {
 		hasView = true;
 	}
+	if (db_args.includes(process.argv[i])) {
+		selectedDb = process.argv[i];
+	}
 }
+
+
+// ##########################  GENERATING PROJECT ########################## //
 
 // Making Project
 if (shell.exec(`npx express-generator ${argsStr} ${!hasView ? '--no-view': ''} --git`).code !== 0) {
@@ -43,6 +58,10 @@ if (shell.exec(`npx express-generator ${argsStr} ${!hasView ? '--no-view': ''} -
 if (process.argv[0]) {
 	shell.cd(process.argv[0])
 }
+
+
+// ########################## MAKING DIRECTORIES  ########################## //
+
 
 // Making src folder
 shell.mkdir('src');
@@ -97,10 +116,12 @@ shell.cd('..');
 // ENV
 shell.touch('.env');
 
-// .vsCode Initialization
+// .vsCode Initialization for the https://github.com/mustafasheikh1/vscode-settings
 shell.mkdir('.vscode');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/vscode-settings/master/.vscode/settings.json --output .vscode/settings.json')
 
+
+// ########################## INSTALLING DEPENDANCIES  ########################## //
 
 // Node Modules
 if(shell.exec('npm i').code !== 0) {
@@ -113,6 +134,9 @@ shell.exec('npm i jsonwebtoken');
 
 // Installig swagger
 shell.exec('npm install swagger-ui-express');
+
+
+// ########################## CHANGES IN THE FILES  ########################## //
 
 // Makeing updates in files
 for (let i = 0; i < changes.length; i++) {
@@ -129,6 +153,30 @@ shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.co
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output src/@shared/common/helper.js');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output src/@middleware/authenticated.js');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output src/@middleware/authorized.js');
+
+
+// ##########################  ADDING DB  ########################## //
+
+
+switch (selectedDb) {
+	case db.MONGO: {
+		// Mongo DB
+		shell.exec('npm i mongoose');
+		shell.mkdir('src/@startup/db');
+		shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/db/mongo/index.js --output src/@startup/db/index.js');
+		replace.sync(
+			{
+				"files": "src/app.js",
+				"from": "// Routes\nrequire('./@routes')(app);",
+				"to": "// Routes\nrequire('./@routes')(app);\n// DB\nrequire('./@startup/db')();"
+			},
+		)
+	}
+	default: {
+		shell.echo('\nNO DB SELECTED\n');
+	}
+} 
+
 
 
 
