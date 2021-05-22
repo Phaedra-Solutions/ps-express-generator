@@ -130,11 +130,15 @@ if(shell.exec('npm i').code !== 0) {
 }
 
 // Installing jsonwebtoken
+shell.exec('npm install nodemon --save-dev')
+
 shell.exec('npm i jsonwebtoken');
 
 // Installig swagger
 shell.exec('npm install swagger-ui-express');
 
+// dotenv
+shell.exec('npm install dotenv');
 
 // ########################## CHANGES IN THE FILES  ########################## //
 
@@ -144,7 +148,6 @@ for (let i = 0; i < changes.length; i++) {
 }
 
 // Adding and deleteing files
-shell.exec('pwd');
 shell.rm(['src/@routes/index.js', 'src/@routes/users.js']);
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/index.js --output src/@routes/index.js');
 shell.mkdir('src/@routes/default');
@@ -171,9 +174,8 @@ switch (selectedDb) {
 				"to": "// Routes\nrequire('./@routes')(app);\n// DB\nrequire('./@startup/db')();"
 			},
 		)
-	}
-	default: {
-		shell.echo('\nNO DB SELECTED\n');
+		shell.exec(`echo "db=''"|cat - .env > /tmp/out && mv /tmp/out .env`);
+		shell.echo('[MONGO_DB ADDED SUCCESSFULLY]');
 	}
 } 
 

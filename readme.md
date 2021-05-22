@@ -55,6 +55,8 @@ This generator can also be further configured with the following command line fl
         --git            add .gitignore
     -f, --force          force on non-empty directory
     -h, --help           output usage information
+        (DATABASE)
+        --mongo          adds mongoose    
 
 ## License
 

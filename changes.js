@@ -2,7 +2,7 @@ module.exports = [
   { 
     "files": "src/app.js",
     "from": "var indexRouter = require('./routes/index');\nvar usersRouter = require('./routes/users');",
-    "to": ""
+    "to": "// Loading env\nrequire('dotenv').config();"
   },
   { 
     "files": ["*.js", "bin/www"],
