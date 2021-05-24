@@ -5,7 +5,7 @@ module.exports = [
     "to": "// Loading env\nrequire('dotenv').config();"
   },
   { 
-    "files": ["*.js", "bin/www"],
+    "files": ["src/*.js", "bin/www"],
     "from": /var/g,
     "to": "const"
   },
