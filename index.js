@@ -104,6 +104,11 @@ shell.mkdir('@shared');
 shell.cd('@shared');
 shell.touch('index.js');
 
+shell.mkdir('utils');
+shell.cd('utils');
+shell.touch('index.js');
+shell.cd('..');
+
 shell.mkdir('common');
 shell.cd('common');
 shell.touch('index.js');
@@ -153,7 +158,7 @@ shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.co
 shell.mkdir('src/@routes/default');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/controller.js --output src/@routes/default/controller.js');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/routes/default/routes-config.js --output src/@routes/default/routes-config.js');
-shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/common/helper.js --output src/@shared/common/helper.js');
+shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/shared/utils/index.js --output src/@shared/utils/index.js');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authenticated.js --output src/@middleware/authenticated.js');
 shell.exec('curl -H \'Cache-Control: no-cache\' https://raw.githubusercontent.com/mustafasheikh1/ps-express-generator/master/content/middleware/authorized.js --output src/@middleware/authorized.js');
 
