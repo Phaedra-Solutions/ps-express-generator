@@ -1,4 +1,5 @@
 {
 	"editor.quickSuggestions": true,
-	"editor.tabSize": 2
+	"editor.tabSize": 2,
+	"editor.fontFamily": "'Ubuntu Mono' ,Menlo, Monaco, 'Courier New', monospace"
 }
