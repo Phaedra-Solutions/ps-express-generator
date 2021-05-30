@@ -1,5 +1,5 @@
 {
-  "name": "ps-express-generator",
+  "name": "ps-express-generator-test",
   "version": "1.0.11",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "index.js",
@@ -11,10 +11,11 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "replace-in-file": "^6.2.0",
+    "require-text": "^0.0.1",
     "shelljs": "^0.8.4"
   },
   "bin": {
-    "ps-express-generator": "index.js"
+    "ps-express-generator": "src/index.js"
   },
   "repository": "mustafasheikh1/ps-express-generator",
   "keywords": [
