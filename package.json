@@ -1,15 +1,19 @@
 {
-  "name": "ps-express-generator-test",
-  "version": "1.0.11",
+  "name": "@ps-cli/express",
+  "version": "1.0.0",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mustafa Shykh <mustafa.ahmed@phaedrasolutions.com>",
   "license": "ISC",
   "dependencies": {
+    "adddep": "^1.0.1",
+    "chalk": "^4.1.1",
+    "cli-welcome": "^2.2.2",
     "dotenv": "^8.2.0",
+    "figlet": "^1.5.0",
     "replace-in-file": "^6.2.0",
     "require-text": "^0.0.1",
     "shelljs": "^0.8.4"
@@ -17,7 +21,7 @@
   "bin": {
     "ps-express-generator": "src/index.js"
   },
-  "repository": "mustafasheikh1/ps-express-generator",
+  "repository": "Phaedra-Solutions/ps-express-generator",
   "keywords": [
     "express",
     "framework",

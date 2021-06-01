@@ -1,0 +1,9 @@
+{
+  "name": "--name--",
+  "version": "1.0.0",
+  "description": "Express App Generated via ps-express-generator",
+  "main": "bin/www",
+  "scripts": {
+    "start": "nodemon bin/www"
+  }
+}

@@ -1,3 +1,0 @@
-[
-  { "name": "authorized.js", "src": "./content/js/middleware/authorized.js", "destination": "src/@middleware" }
-]

@@ -10,12 +10,12 @@
 ## Installation
 
 ```sh
-$ npm install -g ps-express-generator
+$ npm install -g @ps-cli/express
 ```
 or 
 
 ```sh
-$ npx ps-express-generator <name>
+$ npx @ps-cli/express <name>
 ```
 
 ## Quick Start
