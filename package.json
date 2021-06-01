@@ -1,15 +1,18 @@
 {
   "name": "@ps-cli/express",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mustafa Shykh <mustafa.ahmed@phaedrasolutions.com>",
-  "license": "ISC",
+  "author": {
+    "name": "Mustafa Shykh",
+    "email": "mustafa.ahmed@phaedrasolutions.com",
+    "url": "https://github.com/mustafasheikh1"
+  },
+  "license": "MIT",
   "dependencies": {
-    "adddep": "^1.0.1",
     "chalk": "^4.1.1",
     "cli-welcome": "^2.2.2",
     "dotenv": "^8.2.0",
@@ -19,7 +22,7 @@
     "shelljs": "^0.8.4"
   },
   "bin": {
-    "ps-express-generator": "src/index.js"
+    "@ps-cli/express": "src/index.js"
   },
   "repository": "Phaedra-Solutions/ps-express-generator",
   "keywords": [
@@ -32,5 +35,8 @@
     "router",
     "app",
     "api"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^2.3.0"
+  }
 }
