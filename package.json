@@ -1,6 +1,6 @@
 {
   "name": "@ps-cli/express",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "src/index.js",
   "scripts": {
