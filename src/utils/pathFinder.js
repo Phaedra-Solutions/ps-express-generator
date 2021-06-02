@@ -30,7 +30,7 @@ module.exports = [
 
 	// Editor config
 	{ "name": ".editorconfig", "src": "./content/editor/.editorconfig", "destination": "." },
-	{ "name": ".gitignore", "src": "./content/editor/.gitignore", "destination": "." },
+	{ "name": ".gitignore",  "src": "./content/editor/.gitignore", "destination": "." },
 	{ "name": ".gitattributes", "src": "./content/editor/.gitattributes", "destination": "." },
 	{ "name": ".prettierrc", "src": "./content/editor/.prettierrc", "destination": "." },
 	{ "name": "settings.json", "src": "./content/editor/settings.json", "destination": ".vscode" },
