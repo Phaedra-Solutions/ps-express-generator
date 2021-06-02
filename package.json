@@ -4,7 +4,7 @@
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node src/index output"
   },
   "author": {
     "name": "Mustafa Shykh",
@@ -14,9 +14,11 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.1",
+    "cli-handle-unhandled": "^1.1.1",
     "cli-welcome": "^2.2.2",
     "dotenv": "^8.2.0",
     "figlet": "^1.5.0",
+    "log-symbols": "^5.0.0",
     "replace-in-file": "^6.2.0",
     "require-text": "^0.0.1",
     "shelljs": "^0.8.4"
@@ -24,6 +26,9 @@
   "bin": {
     "@ps-cli/express": "src/index.js"
   },
+  "files": [
+    "src/*"
+  ],
   "repository": "Phaedra-Solutions/ps-express-generator",
   "keywords": [
     "express",
