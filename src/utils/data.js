@@ -13,7 +13,7 @@ module.exports = {
   \n
 Please visit https://github.com/Phaedra-Solutions/ps-express-generator for more information
 Please report issues if you find any bug or want any improvement, feel free to add your
-Pull Requests, Thanks 😏, STAY AWESOME!! 🚀
+Pull Requests, Thanks 😏, STAY AWESOME!!! 🚀
   `,
   welcomeTxt: `
 Pheadra Solutons custom CLI for all major javascript Libs, this @ps-cli/express will generate 
