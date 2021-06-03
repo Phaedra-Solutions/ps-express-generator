@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const ask = require('./ask');
 
-module.exports = async ($install) => {
+module.exports = async (name, $install) => {
   let install = $install;
   // Confirming
 	if (!install) {
@@ -14,8 +14,10 @@ module.exports = async ($install) => {
 	// ########################## ADDING / INSTALLING DEPNEDCIES ########################## //
 	if (install) {
 		console.log(`\n ${chalk.yellow(`INSTALLING DEPENDANCIES 🚀`)}\n `)
+    shell.cd(name)
 		shell.exec(`npm i ${dependancies}`);
 		shell.exec(`npm i ${devDependancies} --save-dev`);	
+    shell.cd('..')
 	} else {
 		console.log(`\n${chalk.yellow(`ADDING DEPENDANCIES 🏄🏻‍♂️`)}\n `)
 		shell.exec(`npx add-dependencies ./package.json ${dependancies}`);

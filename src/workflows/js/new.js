@@ -19,7 +19,7 @@ module.exports = async (name, options) => {
 	}
 
   console.log('\n');
-  await install(options.install);
+  await install(name, options.install);
 
   console.log('\n');
   await git(name, options.git);
