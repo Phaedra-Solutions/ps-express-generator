@@ -19,8 +19,10 @@ module.exports = async (name, $install) => {
 		shell.exec(`npm i ${devDependancies} --save-dev`);	
     shell.cd('..')
 	} else {
+    shell.cd(name)
 		console.log(`\n${chalk.yellow(`ADDING DEPENDANCIES 🏄🏻‍♂️`)}\n `)
 		shell.exec(`npx add-dependencies ./package.json ${dependancies}`);
 		shell.exec(`npx add-dependencies ./package.json ${devDependancies} --save-dev`);
+    shell.cd('..')
 	}
 }
