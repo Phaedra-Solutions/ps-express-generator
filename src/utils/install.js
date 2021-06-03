@@ -8,7 +8,7 @@ module.exports = async ($install) => {
   // Confirming
 	if (!install) {
 		const _intall = await ask({name: 'install', message: 'Do want to install dependancies ?', hint: '(yes|no)', initial: 'no', choices: ['yes', 'no'] });
-		if (_intall === 'yes') flags.install = true;
+		if (_intall === 'yes') install = true;
 	}
 
 	// ########################## ADDING / INSTALLING DEPNEDCIES ########################## //
