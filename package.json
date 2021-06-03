@@ -1,10 +1,10 @@
 {
   "name": "@ps-cli/express",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "src/index.js",
   "scripts": {
-    "test": "node src/index output"
+    "test": "node src/index new output"
   },
   "author": {
     "name": "Mustafa Shykh",
@@ -18,12 +18,20 @@
     "cli-handle-unhandled": "^1.1.1",
     "cli-welcome": "^2.2.2",
     "commander": "^7.2.0",
-    "dotenv": "^8.2.0",
+    "cookie-parser": "^1.4.5",
+    "cp-file": "^9.0.0",
+    "debug": "^4.3.1",
+    "dotenv": "^10.0.0",
     "enquirer": "^2.3.6",
+    "express": "^4.17.1",
     "figlet": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "make-dir": "^3.1.0",
+    "morgan": "^1.10.0",
     "replace-in-file": "^6.2.0",
     "require-text": "^0.0.1",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "swagger-ui-express": "^4.1.6"
   },
   "bin": {
     "@ps-cli/express": "src/index.js",
@@ -45,6 +53,7 @@
     "api"
   ],
   "devDependencies": {
+    "nodemon": "^2.0.7",
     "prettier": "^2.3.0"
   }
 }

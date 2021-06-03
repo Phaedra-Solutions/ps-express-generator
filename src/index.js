@@ -1,12 +1,9 @@
 #!/usr/bin/env node
-const shell = require('shelljs');
 const init = require('./utils/init');
-// const chalk = require('chalk');
 const { Command } = require('commander');
 const data = require('./utils/data');
 const packJson = require('../package.json');
-const workflows = require('./workflows');
-const install = require('./utils/install');
+const jsWorkflows = require('./workflows/js');
 const program = new Command();
 
 /**
@@ -31,9 +28,11 @@ const program = new Command();
 	program
 		.command(`new <name>`)
 		.option('-i, --install', 'intsall all dependantcies')
+		.option('-g, --git', 'initialize git')
+		.helpOption('-h, --help', 'Help in options')
 		.description(`Generates a new project`)
 		.action( async (name, options) => {
-			await workflows.project(name, options.install);
+			await jsWorkflows.new(name, options);
 		})
 
 
@@ -45,3 +44,8 @@ const program = new Command();
 	}
 
 })();
+
+
+module.exports = {
+	program
+}
