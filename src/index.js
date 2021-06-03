@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 const shell = require('shelljs');
-const writer = require('./writer');
-const data = require('./utils/pathFinder');
 const init = require('./utils/init');
-const cli = require('./utils/commander');
-const { appName, dependancies, devDependancies } = require('./utils/data');
-const chalk = require('chalk');
+// const chalk = require('chalk');
+const { Command } = require('commander');
+const data = require('./utils/data');
+const packJson = require('../package.json');
+const workflows = require('./workflows');
+const install = require('./utils/install');
+const program = new Command();
 
 /**
  * @description IIFE (this will invoke as soon as it's exxcuted)
@@ -14,35 +16,32 @@ const chalk = require('chalk');
 	// ##########################  WELCOME ########################## //
 	init();
 
-	// ##########################  ARGS PROCESSING ########################## //
-	const flags = cli.opts();
 
-	// ##########################  GENERATING PROJECT ########################## //
-	shell.mkdir(appName);
-	shell.cd(appName);
+	program.name('@ps-cli/express');
 
-	for (let i = 0; i < data.length; i++) {
-		if (data[i].name === 'package.json') {
-			writer({
-				...data[i], changes: [
-					{ "from": "--name--", "to": appName }
-				]
-			}, process.argv[0])
-		} else {
-			writer({ ...data[i] }, appName);
-		}
+	// Global Options
+	program.option('-v, --version', `${packJson.version}`);
+
+	// Help
+	program.helpOption('-h, --help', 'Get the help info');
+	program.addHelpText('before', `\n`);
+	program.addHelpText('after', data.helpInfo);
+
+	// Commads
+	program
+		.command(`new <name>`)
+		.option('-i, --install', 'intsall all dependantcies')
+		.description(`Generates a new project`)
+		.action( async (name, options) => {
+			await workflows.project(name, options.install);
+		})
+
+
+	// Loading all Agrs
+	program.parse();
+	if (program.opts().version) {
+		console.log(packJson.version);
+		process.exit(0);
 	}
 
-	// ########################## ADDING / INSTALLING DEPNEDCIES ########################## //
-	if (flags.install) {
-		console.log(`\n ${chalk.yellow(`INSTALLING DEPENDANCIES 🚀`)}\n `)
-		shell.exec(`npm i ${dependancies}`);
-		shell.exec(`npm i ${devDependancies} --save-dev`);	
-	} else {
-		console.log(`\n${chalk.yellow(`ADDING DEPENDANCIES 🏄🏻‍♂️`)}\n `)
-		shell.exec(`npx add-dependencies ./package.json ${dependancies}`);
-		shell.exec(`npx add-dependencies ./package.json ${devDependancies} --save-dev`);
-	}
-
-	shell.exit(0);
 })();

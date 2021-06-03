@@ -10,6 +10,7 @@ const italic = chalk.italic;
 const log = console.log;
 
 module.exports = () => {
+  log('\n');
   console.log(figlet.textSync('PS-CLI / EXPRESS'));
 
   unhandled();

@@ -19,7 +19,7 @@ module.exports = ($config, $name=undefined) => {
   // Running Changes if any
   if (changes && changes.length > 0) {
     for (let i = 0; i < changes.length; i++) {
-      content = content.replace(changes[i].from, changes[i].to);
+      content = content.replace(`--${changes[i].from}--`, changes[i].to);
     }
   }
 
