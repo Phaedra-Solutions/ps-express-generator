@@ -10,10 +10,6 @@ const program = new Command();
  * @description IIFE (this will invoke as soon as it's exxcuted)
  */
 (async () => {
-	// ##########################  WELCOME ########################## //
-	init();
-
-
 	program.name('@ps-cli/express');
 
 	// Global Options
@@ -23,7 +19,6 @@ const program = new Command();
 	program.helpOption('-h, --help', 'Get the help info');
 	program.addHelpText('before', `\n`);
 	program.addHelpText('after', data.helpInfo);
-
 	// Commads
 	program
 		.command(`new <name>`)
@@ -32,6 +27,8 @@ const program = new Command();
 		.helpOption('-h, --help', 'Help in options')
 		.description(`Generates a new project`)
 		.action( async (name, options) => {
+			// WELCOME
+			init();
 			await jsWorkflows.new(name, options);
 		})
 
