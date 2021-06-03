@@ -4,6 +4,7 @@ const { Command } = require('commander');
 const data = require('./utils/data');
 const packJson = require('../package.json');
 const jsWorkflows = require('./workflows/js');
+const chalk = require('chalk');
 const program = new Command();
 
 /**
@@ -13,12 +14,15 @@ const program = new Command();
 	program.name('@ps-cli/express');
 
 	// Global Options
-	program.option('-v, --version', `${packJson.version}`);
+	program
+		.option('-v, --version', `${packJson.version}`)
+		.description('Gives the verison of CLI')
+		.action(() => {
+			console.log(`${chalk.yellow(`version`)}: ${packJson.version}`);
+			process.exit(0);
+		})
 
-	// Help
-	program.helpOption('-h, --help', 'Get the help info');
-	program.addHelpText('before', `\n`);
-	program.addHelpText('after', data.helpInfo);
+
 	// Commads
 	program
 		.command(`new <name>`)
@@ -32,13 +36,11 @@ const program = new Command();
 			await jsWorkflows.new(name, options);
 		})
 
-
-	// Loading all Agrs
+	// Help
+	program.helpOption('-h, --help', 'Get the help info');
+	program.addHelpText('before', `\n`);
+	program.addHelpText('after', data.helpInfo);	
 	program.parse();
-	if (program.opts().version) {
-		console.log(packJson.version);
-		process.exit(0);
-	}
 
 })();
 
