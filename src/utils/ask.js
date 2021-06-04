@@ -1,4 +1,4 @@
-const { Input, Confirm } = require('enquirer');
+const { Input } = require('enquirer');
 const to = require('await-to-js').default;
 const handleError = require('cli-handle-unhandled');
 

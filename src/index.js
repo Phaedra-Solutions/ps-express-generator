@@ -32,7 +32,7 @@ const program = new Command();
 		.description(`Generates a new project`)
 		.action( async (name, options) => {
 			// WELCOME
-			init();
+			await init();
 			await jsWorkflows.new(name, options);
 		})
 

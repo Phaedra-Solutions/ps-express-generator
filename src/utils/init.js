@@ -6,11 +6,11 @@ const unhandled = require('cli-handle-unhandled');
 const chalk = require('chalk');
 const { welcomeTxt } = require('./data');
 const italic = chalk.italic;
-const updateNOtifier = require('update-notifier');
+const updateNotifier = require('update-notifier');
 
 const log = console.log;
 
-module.exports = () => {
+module.exports = async () => {
   log('\n');
   console.log(figlet.textSync('PS-CLI / EXPRESS'));
 
@@ -29,6 +29,14 @@ module.exports = () => {
   log(`${italic(`${welcomeTxt}`)}`)
   log('\n');
 
-  updateNOtifier({ pkg: packJson }).notify();
+  updateNotifier({
+    pkg: {
+      name: packJson.name,
+      version: packJson.version
+    },
+    shouldNotifyInNpmScript: true,
+    updateCheckInterval: 0,
+  }).notify();
+
   timeout(2);
 }

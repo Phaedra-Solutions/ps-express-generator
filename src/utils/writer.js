@@ -18,7 +18,7 @@ module.exports = async ($config, name) => {
   outFile = path.join(`${outDir}/${filename}`);
   await cpFile(inFile, outFile);
   
-  // Find a better way
+  // TODO: Find a better way
   if (filename === 'package.json') {
     replace({
       files: outFile,
