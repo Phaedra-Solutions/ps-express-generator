@@ -6,6 +6,7 @@ const unhandled = require('cli-handle-unhandled');
 const chalk = require('chalk');
 const { welcomeTxt } = require('./data');
 const italic = chalk.italic;
+const updateNOtifier = require('update-notifier');
 
 const log = console.log;
 
@@ -28,5 +29,6 @@ module.exports = () => {
   log(`${italic(`${welcomeTxt}`)}`)
   log('\n');
 
-  timeout(3);
+  updateNOtifier({ packJson }).notify();
+  timeout(2);
 }

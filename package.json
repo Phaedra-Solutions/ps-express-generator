@@ -1,6 +1,6 @@
 {
   "name": "@ps-cli/express",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Express Boilerplate Boilerplate based upto express-generator",
   "main": "src/index.js",
   "scripts": {
@@ -25,7 +25,8 @@
     "make-dir": "^3.1.0",
     "replace-in-file": "^6.2.0",
     "require-text": "^0.0.1",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "update-notifier": "^5.1.0"
   },
   "bin": {
     "@ps-cli/express": "src/index.js",
