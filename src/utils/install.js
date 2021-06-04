@@ -2,6 +2,9 @@ const { dependancies, devDependancies } = require('./data');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const ask = require('./ask');
+const ora = require('ora');
+
+const spinner = ora({ text: '' })
 
 module.exports = async (name, $install) => {
   let install = $install;
@@ -15,8 +18,10 @@ module.exports = async (name, $install) => {
 	if (install) {
 		console.log(`\n ${chalk.yellow(`INSTALLING DEPENDANCIES 🚀`)}\n `)
     shell.cd(name)
+    spinner.start(`${chalk.yellow(`Installing dependantcies...`)}`);
 		shell.exec(`npm i ${dependancies}`);
 		shell.exec(`npm i ${devDependancies} --save-dev`);	
+    spinner.succeed(`${chalk.green(`Dependantcies Intalled Successfully`)}`);
     shell.cd('..')
 	} else {
     shell.cd(name)
