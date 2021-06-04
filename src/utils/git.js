@@ -1,10 +1,12 @@
 const shell = require('shelljs');
 const ask = require('./ask');
 const chalk = require('chalk');
+const store = require('./store');
 
+module.exports = async () => {
+  let git = !!store.get('git');
+  let name = store.get('appName');
 
-module.exports = async (name, $git) => {
-  let git = $git;
   // Confirming
 	if (!git) {
 		const _git = await ask({name: 'git', message: 'Do want to initalize git ?', hint: '(yes|no)', initial: 'no', choices: ['yes', 'no'] });

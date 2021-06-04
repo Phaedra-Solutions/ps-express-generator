@@ -3,11 +3,13 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const ask = require('./ask');
 const ora = require('ora');
+const store = require('./store');
 
 const spinner = ora({ text: '' })
 
-module.exports = async (name, $install) => {
-  let install = $install;
+module.exports = async () => {
+  let install = !!store.get('install');
+  let name = store.get('appName');
   // Confirming
 	if (!install) {
 		const _intall = await ask({name: 'install', message: 'Do want to install dependancies ?', hint: '(yes|no)', initial: 'no', choices: ['yes', 'no'] });

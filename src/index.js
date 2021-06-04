@@ -6,6 +6,7 @@ const packJson = require('../package.json');
 const jsWorkflows = require('./workflows/js');
 const chalk = require('chalk');
 const program = new Command();
+const store = require('./utils/store');
 
 /**
  * @description IIFE (this will invoke as soon as it's exxcuted)
@@ -33,7 +34,8 @@ const program = new Command();
 		.action( async (name, options) => {
 			// WELCOME
 			await init();
-			await jsWorkflows.new(name, options);
+			store.set({ appName: name, ...options });
+			await jsWorkflows.new();
 		})
 
 	// Help
