@@ -29,6 +29,6 @@ module.exports = () => {
   log(`${italic(`${welcomeTxt}`)}`)
   log('\n');
 
-  updateNOtifier({ packJson }).notify();
+  updateNOtifier({ pkg: packJson }).notify();
   timeout(2);
 }
