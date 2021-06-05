@@ -34,7 +34,7 @@ const store = require('./utils/store');
 		.action( async (name, options) => {
 			// WELCOME
 			await init();
-			store.set({ appName: name, ...options });
+			store.set({ vars: { name }, ...options });
 			await jsWorkflows.new();
 		})
 

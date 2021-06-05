@@ -9,7 +9,9 @@ const spinner = ora({ text: '' })
 
 module.exports = async () => {
   let install = !!store.get('install');
-  let name = store.get('appName');
+  const vars = store.get('vars');
+  let {name} = vars;
+
   // Confirming
 	if (!install) {
 		const _intall = await ask({name: 'install', message: 'Do want to install dependancies ?', hint: '(yes|no)', initial: 'no', choices: ['yes', 'no'] });
