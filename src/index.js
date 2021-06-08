@@ -14,17 +14,24 @@ const store = require('./utils/store');
 (async () => {
 	program.name('@ps-cli/express');
 
+	// Help
+	program.helpOption('-h, --help', 'Get the help info');
+	program.addHelpText('before', `\n`);
+	program.addHelpText('after', data.helpInfo);
+
 	// Global Options
 	program
 		.option('-v, --version', `${packJson.version}`)
 		.description('Gives the verison of CLI')
-		.action(() => {
-			console.log(`${chalk.yellow(`version`)}: ${packJson.version}`);
-			process.exit(0);
+		.action((options) => {
+			if (options.version) {
+				console.log(`${chalk.yellow(`version`)}: ${packJson.version}`);
+				process.exit(0);
+			}
 		})
 
 
-	// Commads
+	// New Project Sequence
 	program
 		.command(`new <name>`)
 		.option('-i, --install', 'intsall all dependantcies')
@@ -38,11 +45,38 @@ const store = require('./utils/store');
 			await jsWorkflows.new();
 		})
 
-	// Help
-	program.helpOption('-h, --help', 'Get the help info');
-	program.addHelpText('before', `\n`);
-	program.addHelpText('after', data.helpInfo);	
+	// Component Generatiion
+	const generate = program
+		.command('generate')
+		.alias('g')
+
+	// Route
+	generate
+		.command('route <name>')
+		.alias('r')
+		.option('-c, --crud', 'Generates CRUDS as well')
+		.helpOption('-h, --help', 'Help in options')
+		.description('Generate a route')
+		.action(async (name, options) => {
+			store.set({ vars: { name }, ...options })
+			await jsWorkflows.route();
+		})
+
+	generate
+		.command('service <name>')
+		.alias('s')
+		.helpOption('-h, --help', 'Help in options')
+		.description('Generate a service')
+		.action(async (name, options) => {
+			console.log('[SERVICE]');
+		})
+
 	program.parse();
+
+
+	if (program.args.length === 0) {
+		program.outputHelp();
+	}
 
 })();
 

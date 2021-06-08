@@ -1,6 +1,6 @@
 module.exports = {
   new: require('./new'),
-  model: require('./route'),
+  route: require('./route'),
   model: require('./model'),
   service: require('./service'),
 }

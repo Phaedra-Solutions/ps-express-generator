@@ -2,10 +2,12 @@ const shell = require('shelljs');
 const ask = require('./ask');
 const chalk = require('chalk');
 const store = require('./store');
+const path = require('path');
 
 module.exports = async () => {
   let git = !!store.get('git');
-  let name = store.get('appName');
+  const vars = store.get('vars');
+  const { name } = vars
 
   // Confirming
 	if (!git) {
