@@ -12,7 +12,7 @@ const store = require('./utils/store');
  * @description IIFE (this will invoke as soon as it's exxcuted)
  */
 (async () => {
-	program.name('@ps-cli/express');
+	program.name('ps-express');
 
 	// Help
 	program.helpOption('-h, --help', 'Get the help info');
@@ -68,7 +68,8 @@ const store = require('./utils/store');
 		.helpOption('-h, --help', 'Help in options')
 		.description('Generate a service')
 		.action(async (name, options) => {
-			console.log('[SERVICE]');
+			store.set({ vars: { name }, ...options })
+			await jsWorkflows.service();
 		})
 
 	program.parse();
