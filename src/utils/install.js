@@ -1,4 +1,3 @@
-const { dependancies, devDependancies } = require('./data');
 const chalk = require('chalk');
 const shell = require('shelljs');
 const ask = require('./ask');
@@ -23,15 +22,8 @@ module.exports = async () => {
 		console.log(`\n ${chalk.yellow(`INSTALLING DEPENDANCIES 🚀`)}\n `)
     shell.cd(name)
     spinner.start(`${chalk.yellow(`Installing dependantcies...`)}`);
-		shell.exec(`npm i ${dependancies}`);
-		shell.exec(`npm i ${devDependancies} --save-dev`);	
+		shell.exec(`npm i`);
     spinner.succeed(`${chalk.green(`Dependantcies Intalled Successfully`)}`);
-    shell.cd('..')
-	} else {
-    shell.cd(name)
-		console.log(`\n${chalk.yellow(`ADDING DEPENDANCIES 🏄🏻‍♂️`)}\n `)
-		shell.exec(`npx add-dependencies ./package.json ${dependancies}`);
-		shell.exec(`npx add-dependencies ./package.json ${devDependancies} --save-dev`);
     shell.cd('..')
 	}
 }
